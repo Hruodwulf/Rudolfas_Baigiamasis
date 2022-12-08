@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+Welcome to Notebook!
+{% endblock %}
+
+{% block content %}
+<h1>Jūs esate užrašinėjė</h1>
+{% if user.is_authenticated %}
+<h3>Įrankių juotoje pasirinkite veiksmus kuriuos norite atlikti.</h3>
+{% else %}
+<h3>Prisijunkite, jei norite matyti ar atlikti kitus veiksmus.</h3>
+{% endif %}
+{% endblock %}

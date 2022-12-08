@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{note.title}}</h1>
+<p><strong>Sukurtas: </strong>{{ note.date_created }}</p>
+<p><strong>Kategorija: </strong>{{ note.category.all|join:', ' }}</p>
+<h4>{{note.content}}</h4>
+<img src="{{ note.picture.url }}">
+{% if object.owner == user %}
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'note-update' note.id %}">Redaguoti</a>
+<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'note-delete' note.id %}">Ištrinti</a>
+{% endif %}
+
+{% endblock %}

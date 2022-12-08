@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Mano užrašai
+{% endblock %}
+
+{% block content %}
+<h1>Mano užrašai:</h1>
+{% if mynotes %}
+<div class="row">
+    {% for note in mynotes %}
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card mb-4 shadow-sm">
+            {% if note.picture %}
+            <img src="{{ note.picture.url}}" class="card-img-top" alt="...">
+            {% else %}
+            <img src="{% static 'images/no-image.png'%}" class="card-img-top">
+            {% endif %}
+            <div class="card-body">
+                <h4 class="card-subtitle mb-2 text-muted"><a href="{% url 'note-detail' note.id %}">{{note.title}}</a></h4>
+                <h6 class="card-subtitle mb-2 text-muted">{{note.category.all|join:', '}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{note.date_created}}</h6>
+                <p class="card-text">{{note.content}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>Jūs dar nesate sukūręs jokių įrašų.</p>
+</div>
+{% endif %}
+{% endblock %}
